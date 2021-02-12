@@ -1,17 +1,17 @@
 import React,{useState, useEffect} from 'react';
-import PoliticsCard from './PoliticsCard.jsx';
+import ScienceCard from './PoliticsCard.jsx';
 
-function Politics(props) {
+function Science(props) {
 
 useEffect(() => {
-    props.renderData('politics')
-    props.setSidebarGenre('Politics')
+    props.renderData('science')
+    props.setSidebarGenre('Science')
 }, [])
 
 if(props.articles.length === 0){return "loading"}
 
     return (
-        <main className='headlines-container'>          
+        <main className='headlines-container'>      
             <div className="feature-image" style={{backgroundImage: `url(${props.articles[0].multimedia[0].url})`}}>
                 <section className='feature-image-content'>
                     <h1>{props.articles[0].title}</h1>
@@ -23,7 +23,7 @@ if(props.articles.length === 0){return "loading"}
 
             <section className='headline-container'>
                 {props.articles.map((item, index) => 
-                    index > 1 ? <PoliticsCard key={index} headline={item} headlineImage={item.multimedia[0].url}/>
+                    index > 1 ? <ScienceCard key={index} headline={item} headlineImage={item.multimedia[0].url}/>
                     : ''
                 )}
             </section>    
@@ -31,4 +31,4 @@ if(props.articles.length === 0){return "loading"}
     )
 }
 
-export default Politics;
+export default Science;

@@ -1,29 +1,50 @@
-// import logo from './logo.svg';
 import {useState} from 'react';
-
-import logo from './tek_logo.png';
 import './App.css';
-import Todo from './Components/Todo';
+import TodoList from './Components/TodoList';
+import TodoForm from './Components/Form'
+
+
 
 function App() {
 
-  const [todos, setTodos] = useState(["eat","sleep","code","pray","repeat"]);  //sample todo items.  these will need to be changed in your app.  Just filler todos, although they are quite important!
+    const [todos, setTodos] = useState([]); 
+  
+    const deleteHandler = (id) => {
+        setTodos(todos.filter(item => item.item !== id))
+    }
+  
+    const deleteAll = () => {
+        setTodos(todos.filter(item => !item.item))
+    }
+    
+    const isCompletedHandler = (id, isCompleted) => {
+        let newState = [...todos];
+        if(!isCompleted){
+          newState[id].isCompleted = true;
+          setTodos(newState)
+        } else {
+          newState[id].isCompleted = false
+          setTodos(newState)          
+        }       
+    }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <div>
-         <br/>
-          <p>Create a Todo List App</p>
-          <Todo item="1"/>
-          <Todo item="2"/>
-          <Todo item="3"/>
-          {todos.map( (t,i) => <Todo key={i} item={t}/>)}
-        </div>
-      </header>
-    </div>
-  );
+    return (
+      <div className="App">
+          <section>
+              <img/>
+              <TodoForm setTodos={setTodos} 
+                        objLength = {todos.length}
+                        todos={todos}/>
+          </section>
+          <section>
+              <TodoList todos={todos} 
+                        isCompletedHandler={isCompletedHandler} 
+                        deleteHandler={deleteHandler} 
+                        deleteAll={deleteAll}/> 
+          </section>
+      </div>
+    );
 }
 
 export default App;
+

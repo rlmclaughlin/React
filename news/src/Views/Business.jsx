@@ -1,11 +1,11 @@
 import React,{useState, useEffect} from 'react';
-import PoliticsCard from './PoliticsCard.jsx';
+import BusinessCard from './BusinessCard.jsx';
 
-function Politics(props) {
+function Business(props) {
 
 useEffect(() => {
-    props.renderData('politics')
-    props.setSidebarGenre('Politics')
+    props.renderData('business')
+    props.setSidebarGenre('Business')
 }, [])
 
 if(props.articles.length === 0){return "loading"}
@@ -23,7 +23,7 @@ if(props.articles.length === 0){return "loading"}
 
             <section className='headline-container'>
                 {props.articles.map((item, index) => 
-                    index > 1 ? <PoliticsCard key={index} headline={item} headlineImage={item.multimedia[0].url}/>
+                    index > 1 ? <BusinessCard key={index} headline={item} headlineImage={item.multimedia[0].url}/>
                     : ''
                 )}
             </section>    
@@ -31,4 +31,4 @@ if(props.articles.length === 0){return "loading"}
     )
 }
 
-export default Politics;
+export default Business;
